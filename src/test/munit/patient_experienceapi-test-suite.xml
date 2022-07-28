@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="patient_experienceapi-test-suite.xml" />
+	<munit:test name="patient_experienceapi-test-suite-patient_experienceapi-mainTest" doc:id="c9461cce-9a65-4ffa-9101-d69059a1084a" description="Test" expectedErrorType="ANY">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:BAD_REQUEST" doc:id="39d2cc90-e1b7-4cd8-805f-733521111da7" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="patient_experienceapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patient_experienceapi-main" doc:id="721e0bfe-eeb1-4183-bfc8-73f633041388" name="patient_experienceapi-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="f8998005-6b19-4fd1-a9e5-ddd0437416fe" actual="#[vars.httpStatus]" expected="#[400]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patient_experienceapi-test-suite-patient_experienceapi-mainTest1" doc:id="c7d3bbc6-83bb-41ac-90d1-e8b786f06697" description="Test" expectedErrorType="APIKIT:NOT_FOUND">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_FOUND" doc:id="ee30ee69-d933-4a99-bada-85492a5d29c5" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="patient_experienceapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patient_experienceapi-main" doc:id="46cfd068-e7da-4f35-a048-ce3466e51ce5" name="patient_experienceapi-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="445a1d12-5006-4701-963d-92bffc109bdf" actual="#[vars.httpStatus]" expected="#[404]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patient_experienceapi-test-suite-patient_experienceapi-mainTest2" doc:id="6ec1f83d-1b9f-48a3-8f75-3c138a3e5849" description="Test" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:METHOD_NOT_ALLOWED" doc:id="5d1420c2-ba6f-4a78-ac62-e1ea7cf0c4fb" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="patient_experienceapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patient_experienceapi-main" doc:id="7a593e8f-6435-4740-8f4e-7bbd0b390b54" name="patient_experienceapi-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="d94bf922-d337-409f-b1b9-5e7e7f5326fe" actual="#[vars.httpStatus]" expected="#[405]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patient_experienceapi-test-suite-patient_experienceapi-mainTest3" doc:id="c3815ace-1514-4295-a943-757dbae3465e" description="Test" expectedErrorType="APIKIT:NOT_ACCEPTABLE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_ACCEPTABLE" doc:id="77370911-5d51-41fd-84a1-e814cce78ef2" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="patient_experienceapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patient_experienceapi-main" doc:id="3693650a-8d4c-42b1-86b5-3a7f854b8e68" name="patient_experienceapi-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="c602c2e7-4a53-4f04-b696-988f125f2c14" actual="#[vars.httpStatus]" expected="#[406]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patient_experienceapi-test-suite-patient_experienceapi-mainTest4" doc:id="a50cf492-8bd2-41b8-a1ae-e99dce993160" description="Test" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:UNSUPPORTED_MEDIA_TYPE" doc:id="f50209f7-2883-49f6-8209-d132cc8ad0d5" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="patient_experienceapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patient_experienceapi-main" doc:id="36123770-b447-40e5-8cf6-586fe89cee26" name="patient_experienceapi-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="17aa92e0-ecc9-4806-b041-a541a07d9703" actual="#[vars.httpStatus]" expected="#[415]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patient_experienceapi-test-suite-patient_experienceapi-mainTest5" doc:id="23702313-ab57-4384-a316-a291005c5e37" description="Test" expectedErrorType="APIKIT:NOT_IMPLEMENTED">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_IMPLEMENTED" doc:id="13ed4af8-b641-4403-9ba3-879d9bc49526" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="patient_experienceapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patient_experienceapi-main" doc:id="43b8d334-eb4b-4469-862b-0bbc6c07c701" name="patient_experienceapi-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="521e2353-569f-49cc-8547-81271eeb5c50" actual="#[vars.httpStatus]" expected="#[501]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patient_experienceapi-test-suite-patient_experienceapi-consoleTest" doc:id="d1f873a1-ad72-44d1-9110-74e02ebf0362" description="Test" expectedErrorType="APIKIT:NOT_FOUND">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when APIKIT:NOT_FOUND" doc:id="53847d2b-ca59-4ccb-b198-a61ad9f509c1" processor="apikit:console">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="patient_experienceapi-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to patient_experienceapi-console" doc:id="7848e2bc-1731-4ced-b000-a7949ff23af2" name="patient_experienceapi-console"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="5a6fdce3-6336-4798-8096-f90f1a6ca55e" actual="#[vars.httpStatus]" expected="#[404]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="patient_experienceapi-test-suite-get:\particular:patient_experienceapi-configTest" doc:id="e8361bb3-7dea-43f9-8c76-747b1fd493b9" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when requester" doc:id="44b335c3-fad6-4939-b69a-69a2a2a9eea9" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Request" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:attributes value="#[&#10;headers:{'clientId': 'ertyuiojhg', 'clientSecret': 'sdfghjkkjh'}&#10;]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="1f8638a5-edf4-4557-ab1e-ee093086c0a9" >
+				<munit:variables >
+					<munit:variable key="patientId" value="attributes.queryParams.patientId" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\particular:patient_experienceapi-config" doc:id="93bbbaa1-90aa-4755-ba60-429a4701f808" name="get:\particular:patient_experienceapi-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="7abf7c64-5608-49e9-a39b-f59011670ba4" actual="#[attributes.queryParams.patientId]" expected="#[attributes.queryParams.patientId]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

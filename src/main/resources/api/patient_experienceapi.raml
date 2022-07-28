@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: patient_experienceAPI
+version: v1
+mediaType: 
+- application/json
+types:
+  patient: !include datatypes/dataType.raml
+traits:
+  patient: !include traits/file.yaml
+/particular:
+  description: "This resource contain patient information"
+  displayName: Get All patient details
+  get:
+    is: [patient]
+    queryParameters:
+      patientId:
+        type: integer
+        required: true
+        description: Unique ID of Patient
+    responses:
+      200:
+        body:
+          type: patient
+          example : !include example/file.json

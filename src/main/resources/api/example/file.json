@@ -1,0 +1,13 @@
+{
+
+  "patientId": 225143,
+  "patientName": "terminator",
+  "phone": "+44 7448031223",
+  "gender": "Male",
+  "address": "Hollywood",
+  "disease": "Corona",
+  "capsules": "Dolo650",
+  "allergyType": "Nut",
+  "allergySymptom": "Rashes"
+
+}

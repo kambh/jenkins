@@ -1,0 +1,9 @@
+headers:
+  clientId:
+    type: integer
+    required: true
+    description: Unique ID
+  clientSecret:
+    type: string
+    required: true
+    description: Unique secret of Patient
